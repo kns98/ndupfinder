@@ -11,10 +11,8 @@
     <Window.DataContext>
         <er:DuplicateViewModel />
     </Window.DataContext>
-    
+
     <Window.Resources>
-       
-        
         <CollectionViewSource x:Key="SortedDuplicates"
                               IsLiveSortingRequested="True"
                               Source="{Binding}">
