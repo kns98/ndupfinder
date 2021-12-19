@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\docs",
-    "\\src",
-    "\\src\\common",
-    "\\src\\desktop"
+    ""
   ],
-  "SelectedNode": "\\src\\desktop\\MyDispatcher.cs",
+  "SelectedNode": "\\deduper.sln",
   "PreviewInSolutionExplorer": false
 }

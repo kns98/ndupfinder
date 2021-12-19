@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "common\core.csproj", "{B2BE848C-497A-459E-A794-FE3B95BFD4C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{70F05154-9825-4EE1-AA9C-5FDCC81FDECC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2BE848C-497A-459E-A794-FE3B95BFD4C8} = {B2BE848C-497A-459E-A794-FE3B95BFD4C8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf", "desktop\wpf.csproj", "{355B66DE-8142-47E5-81A7-7643C552DF59}"
 EndProject
