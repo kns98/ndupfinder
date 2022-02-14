@@ -135,7 +135,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\common\core.csproj">
       <Project>{b2be848c-497a-459e-a794-fe3b95bfd4c8}</Project>
