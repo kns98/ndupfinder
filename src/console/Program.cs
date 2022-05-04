@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -100,6 +100,13 @@ namespace deduper.console
         private static void dff_OnDuplicateFound(string hashcode, string filepath, long size)
         {
             Console.WriteLine("Found Dup:" + filepath);
+
+            if (!filepath.StartsWith("0-"))
+            {
+                Console.WriteLine("Deleing " + filepath);
+                System.IO.File.Delete(filepath.Substring(2));
+            }
+
             Dups.Add(new KeyValuePair<long, string>(size, hashcode + " : " + filepath));
         }
 
