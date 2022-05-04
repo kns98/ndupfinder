@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -62,7 +62,7 @@ namespace deduper.core
                 {
                     foreach (IFile ff in filelist)
                     {
-                        Action action = () => onDuplicateFound(hash, ff.Path, ff.GetSize());
+                        Action action = () => onDuplicateFound(hash, filelist.IndexOf(ff) + "-" + ff.Path, ff.GetSize());
 
                         if (dispatcher != null)
                         {
@@ -82,7 +82,7 @@ namespace deduper.core
 
                 if (filelist.Count > 2)
                 {
-                    Action action = () => onDuplicateFound(hash, file.Path, file.GetSize());
+                    Action action = () => onDuplicateFound(hash, filelist.IndexOf(file) + "-" + file.Path, file.GetSize());
 
                     if (dispatcher != null)
                     {
