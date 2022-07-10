@@ -1,6 +1,6 @@
 ndupfinder
 ==========
 
-Duplicate File Finder, console, WPF and Windows Store App
+Duplicate File Finder, console, WPF
 
 Console version deletes duplicates in chosen directory.
