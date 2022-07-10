@@ -1,6 +1,5 @@
 using System;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Forms;
 using deduper.console;
 using deduper.core;
@@ -14,16 +13,16 @@ namespace deduper.wpf
         public MainWindow()
         {
             InitializeComponent();
-            DuplicateGroups = (DuplicateGroupCollection) this.DataContext;
+            DuplicateGroups = (DuplicateGroupCollection)DataContext;
         }
 
         private async void OnImagesDirChangeClick(object sender, RoutedEventArgs e)
         {
             btnChange.IsEnabled = false;
             await DuplicateGroups.UpdateAsync(
-                new MyDispatcher(Dispatcher), 
+                new MyDispatcher(Dispatcher),
                 new Directory(ImagesDir.Text));
-            
+
             btnChange.IsEnabled = true;
         }
 
@@ -36,10 +35,7 @@ namespace deduper.wpf
         {
             var dialog = new FolderBrowserDialog();
             dialog.SelectedPath = ImagesDir.Text;
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                ImagesDir.Text = dialog.SelectedPath;
-            }
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) ImagesDir.Text = dialog.SelectedPath;
         }
     }
 }

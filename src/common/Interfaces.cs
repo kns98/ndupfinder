@@ -9,7 +9,7 @@ namespace deduper.core
 
     public interface IDispatcher
     {
-        void Execute(Action method); 
+        void Execute(Action method);
         //i dont want to call this invoke to avoid confusing it  with the real dispatcher
         //the implementation can choose whether to use invoke or begininvoke
     }

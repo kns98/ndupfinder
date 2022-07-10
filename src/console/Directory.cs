@@ -7,20 +7,20 @@ namespace deduper.console
 {
     public class Directory : IDirectory
     {
-        private readonly string m_path;
-
         public Directory(string path)
         {
-            m_path = path;
+            Path = path;
         }
+
+        public string Path { get; }
 
         //fake async to keep to interface
         public async Task<IEnumerable<IFile>> GetFiles()
         {
             var l = new List<IFile>();
-            string[] files = System.IO.Directory.GetFiles(m_path);
+            var files = System.IO.Directory.GetFiles(Path);
 
-            foreach (string file in files)
+            foreach (var file in files)
             {
                 var i = new FileInfo(file);
 
@@ -31,6 +31,7 @@ namespace deduper.console
                     l.Add(f);
                 }
             }
+
             return l;
         }
 
@@ -38,16 +39,8 @@ namespace deduper.console
         public async Task<IEnumerable<IDirectory>> GetSubDirectories()
         {
             var l = new List<IDirectory>();
-            foreach (string dir in System.IO.Directory.GetDirectories(m_path))
-            {
-                l.Add(new Directory(dir));
-            }
+            foreach (var dir in System.IO.Directory.GetDirectories(Path)) l.Add(new Directory(dir));
             return l;
-        }
-
-        public string Path
-        {
-            get { return m_path; }
         }
     }
 }

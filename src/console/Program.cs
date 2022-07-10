@@ -28,13 +28,12 @@ namespace deduper.console
             Console.WriteLine("Welcome to Find Duplicates by cloudada(tm)!");
             Console.WriteLine("");
             Console.Write("Please enter the full path of the folder you wish to search :");
-            string sourcepath = Console.ReadLine();
+            var sourcepath = Console.ReadLine();
 
 
-            bool writesuccess = false;
+            var writesuccess = false;
 
             while (!writesuccess)
-            {
                 try
                 {
                     Console.Write("Please enter the path in which the results should be written to: ");
@@ -53,7 +52,6 @@ namespace deduper.console
                     Console.WriteLine(
                         "Got exception opening log file. Please check the path and your privelges. Please try another location");
                 }
-            }
 
             //we know this is fake async
             //but keep the async model for code consistency
@@ -71,7 +69,7 @@ namespace deduper.console
             var dff = new DuplicateFileFinder(
                 null,
                 new Directory(sourcepath)
-                );
+            );
 
 
             dff.OnFileReadError += DffOnOnFileReadError;
@@ -88,13 +86,9 @@ namespace deduper.console
         private static void dff_OnHashProgress(string filepath, float percent_done)
         {
             if (percent_done < 100)
-            {
                 Console.WriteLine("Begining Hash for: " + filepath);
-            }
             else
-            {
                 Console.WriteLine("Completed Hash for:" + filepath);
-            }
         }
 
         private static void dff_OnDuplicateFound(string hashcode, string filepath, long size)
@@ -128,10 +122,7 @@ namespace deduper.console
         {
             var b = new StringBuilder();
 
-            foreach (var fii in Dups.OrderBySizeDescending())
-            {
-                b.Append(fii.Key + " :" + fii.Value + "\n");
-            }
+            foreach (var fii in Dups.OrderBySizeDescending()) b.Append(fii.Key + " :" + fii.Value + "\n");
 
             using (var outfile = new StreamWriter(logpath))
             {

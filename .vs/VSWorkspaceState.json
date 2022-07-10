@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src"
   ],
-  "SelectedNode": "\\deduper.sln",
+  "SelectedNode": "\\src\\deduper.sln",
   "PreviewInSolutionExplorer": false
 }

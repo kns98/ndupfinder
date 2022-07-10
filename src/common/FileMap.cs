@@ -52,15 +52,11 @@ namespace deduper.core
             IEnumerable<KeyValuePair<long, List<IFile>>> potentialdups = this.Where(
                 l => l.Value.Count > 1 // two files having the same file size are potentially duplicates
                      && l.Key != 0 // ignore zero byte (empty) files 
-                );
+            );
 
             foreach (var potentialdupgroup in potentialdups)
-            {
-                foreach (IFile file in potentialdupgroup.Value)
-                {
-                    yield return file;
-                }
-            }
+            foreach (IFile file in potentialdupgroup.Value)
+                yield return file;
         }
 
         private async Task Populate(IDirectory dir)
@@ -68,7 +64,6 @@ namespace deduper.core
             try
             {
                 foreach (IFile file in await dir.GetFiles())
-                {
                     try
                     {
                         List<IFile> files;
@@ -90,12 +85,8 @@ namespace deduper.core
                     {
                         NotifyFileReadError(file.Path, exception);
                     }
-                }
 
-                foreach (IDirectory directory in await dir.GetSubDirectories())
-                {
-                    await Populate(directory);
-                }
+                foreach (IDirectory directory in await dir.GetSubDirectories()) await Populate(directory);
             }
             catch (Exception exception)
             {
@@ -111,30 +102,22 @@ namespace deduper.core
             if (onFileScanned != null)
             {
                 if (dispatcher != null)
-                {
                     dispatcher.Execute(action);
-                }
                 else
-                {
                     action();
-                }
             }
         }
 
         private void NotifyFileReadError(string path, Exception e)
         {
-            DuplicateFileFinder.FileReadError onFileReadError = OnFileReadError;
+            var onFileReadError = OnFileReadError;
             if (onFileReadError != null)
             {
                 Action action = () => onFileReadError(path, e);
                 if (dispatcher != null)
-                {
                     dispatcher.Execute(action);
-                }
                 else
-                {
                     action();
-                }
             }
         }
     }

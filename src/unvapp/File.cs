@@ -13,7 +13,6 @@ namespace deduper.win8store
     internal class File : IFile
     {
         private static readonly HashAlgorithmProvider m_alg = HashAlgorithmProvider.OpenAlgorithm("MD5");
-        private readonly string m_path;
 
         private readonly StorageFolder m_root;
         private string m_hash;
@@ -21,7 +20,7 @@ namespace deduper.win8store
 
         private File(string path, StorageFolder root)
         {
-            m_path = path;
+            Path = path;
             m_root = root;
         }
 
@@ -30,10 +29,7 @@ namespace deduper.win8store
             return m_hash != null;
         }
 
-        public string Path
-        {
-            get { return m_path; }
-        }
+        public string Path { get; }
 
         public long GetSize()
         {
@@ -44,33 +40,27 @@ namespace deduper.win8store
             IDispatcher d,
             HashProgress notifier)
         {
-            if (m_hash == null)
-            {
-                await CalculateHash(d, notifier);
-            }
+            if (m_hash == null) await CalculateHash(d, notifier);
             return m_hash;
         }
 
         public async Task Delete()
         {
-            StorageFile file = await GetFromRoot(m_path, m_root);
+            StorageFile file = await GetFromRoot(Path, m_root);
             await file.DeleteAsync();
         }
 
         public async Task Write(StringBuilder b)
         {
-            StorageFile file = await GetFromRoot(m_path, m_root);
+            StorageFile file = await GetFromRoot(Path, m_root);
 
             IRandomAccessStream s = await file.OpenAsync(FileAccessMode.ReadWrite);
-            IOutputStream s1 = s.GetOutputStreamAt(0);
+            var s1 = s.GetOutputStreamAt(0);
             var d = new DataWriter(s1);
             d.WriteString(b.ToString());
             await d.StoreAsync();
             bool success = await s.FlushAsync();
-            if (!success)
-            {
-                throw new Exception("FlushAsync failed!");
-            }
+            if (!success) throw new Exception("FlushAsync failed!");
         }
 
         // only store a pointer to root 
@@ -103,7 +93,7 @@ namespace deduper.win8store
                 string fileName = System.IO.Path.GetFileName(fileSubPath);
                 string dirSubPath = System.IO.Path.GetDirectoryName(fileSubPath);
 
-                StorageFolder cur = mRoot;
+                var cur = mRoot;
 
                 if (dirSubPath.Length > 1) //assumes the separator is a single character - should improve this
                 {
@@ -112,23 +102,21 @@ namespace deduper.win8store
                     string[] dirs = dirSubPath.Split(separator);
 
                     foreach (string dir in dirs)
-                    {
                         if (dir != "")
-                        {
                             cur = await cur.GetFolderAsync(dir);
-                        }
-                    }
                 }
+
                 StorageFile file = await cur.GetFileAsync(fileName);
                 return file;
             }
+
             throw new Exception("Path is not sub dir of root path");
         }
 
         private async Task CalculateFileSize(StorageFile file)
         {
             BasicProperties p = await file.GetBasicPropertiesAsync();
-            m_size = (long) p.Size;
+            m_size = (long)p.Size;
         }
 
         private async Task CalculateHash(
@@ -139,19 +127,15 @@ namespace deduper.win8store
             {
                 Action action = () => notifier(Path, 0);
                 if (d == null)
-                {
                     action();
-                }
                 else
-                {
                     d.Execute(action);
-                }
             }
 
             //TODO - exception handling
-            StorageFile file = await GetFromRoot(m_path, m_root);
-            int num_chunks = (int) (GetSize()/Chunker.chunk_size) + 1;
-            int hash_size = num_chunks*32;
+            StorageFile file = await GetFromRoot(Path, m_root);
+            int num_chunks = (int)(GetSize() / Chunker.chunk_size) + 1;
+            int hash_size = num_chunks * 32;
             float current_chunk = 0;
             var hash_builder = new StringBuilder(hash_size);
             m_hash = "";
@@ -165,26 +149,23 @@ namespace deduper.win8store
                     using (var dataReader = new DataReader(inputStream.GetInputStreamAt(chunk.Start)))
                     {
                         await dataReader.LoadAsync(chunk.Length);
-                        IBuffer buf = dataReader.ReadBuffer(chunk.Length);
-                        IBuffer hashed = m_alg.HashData(buf);
+                        var buf = dataReader.ReadBuffer(chunk.Length);
+                        var hashed = m_alg.HashData(buf);
                         hash_builder.Append(CryptographicBuffer.EncodeToHexString(hashed));
                     }
                 }
+
                 current_chunk++;
 
 
                 if (notifier != null)
                 {
-                    float percent_done = current_chunk/num_chunks;
-                    Action action = () => notifier(Path, percent_done*100);
+                    float percent_done = current_chunk / num_chunks;
+                    Action action = () => notifier(Path, percent_done * 100);
                     if (d == null)
-                    {
                         action();
-                    }
                     else
-                    {
                         d.Execute(action);
-                    }
                 }
             }
 
@@ -193,8 +174,8 @@ namespace deduper.win8store
             if (hash_size > 32) //hash the hash 
             {
                 // Convert the string to UTF8 binary data.
-                IBuffer hashbuf = CryptographicBuffer.ConvertStringToBinary(m_hash, BinaryStringEncoding.Utf8);
-                IBuffer hashed = m_alg.HashData(hashbuf);
+                var hashbuf = CryptographicBuffer.ConvertStringToBinary(m_hash, BinaryStringEncoding.Utf8);
+                var hashed = m_alg.HashData(hashbuf);
                 m_hash = CryptographicBuffer.EncodeToHexString(hashed);
             }
 
@@ -202,13 +183,9 @@ namespace deduper.win8store
             {
                 Action action = () => notifier(Path, 100);
                 if (d == null)
-                {
                     action();
-                }
                 else
-                {
                     d.Execute(action);
-                }
             }
         }
     }

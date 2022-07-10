@@ -1,8 +1,4 @@
-using System;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Storage;
-using Windows.Web.Syndication;
 using deduper.core;
 
 namespace deduper.win8store
@@ -35,7 +31,6 @@ namespace deduper.win8store
                 dff_OnDuplicateFound("509d4bd9ade7003a14a0cd7407b8f2a5",
                     @"C:\Users\Kevin\Pictures\duptest\Duplicate_Test\WP_20140607_18_48_17_Pro.jpg", 2750853);
             }
-             
         }
     }
 }

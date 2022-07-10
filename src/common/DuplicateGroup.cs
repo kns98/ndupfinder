@@ -6,9 +6,9 @@ namespace deduper.core
 {
     public class DuplicateGroup : ObservableCollection<Duplicate>
     {
+        private readonly IBitMapCreator _bc;
         private long _size;
         private bool _triedToSetThumb;
-        private readonly IBitMapCreator _bc;
 
         public DuplicateGroup(IBitMapCreator bc)
         {
@@ -17,7 +17,7 @@ namespace deduper.core
 
         public long FileSize
         {
-            get { return _size; }
+            get => _size;
 
             private set
             {
@@ -43,14 +43,16 @@ namespace deduper.core
                         ext == ".GIF" ||
                         ext == ".BMP" ||
                         false
-                        )
+                    )
                     {
                         Thumb = await _bc.Create(path);
                         OnPropertyChanged(new PropertyChangedEventArgs("Thumb"));
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
             finally
             {
                 _triedToSetThumb = true;

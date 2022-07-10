@@ -37,7 +37,6 @@ namespace deduper.win8store
             {
                 m_files = new List<IFile>();
                 foreach (StorageFile file in await m_folder.GetFilesAsync())
-                {
                     //don't ping the network
                     //make the configurable later
                     if (!file.Attributes.HasFlag(FileAttributes.LocallyIncomplete))
@@ -45,16 +44,12 @@ namespace deduper.win8store
                         IFile f = await File.GetNew(file, m_root);
                         m_files.Add(f);
                     }
-                }
             }
 
             //we want to clear out the StorageFolder so that it can be 
             //garbage collected after both the files and directories
             //have been retrieved
-            if (m_dirs != null)
-            {
-                m_folder = null;
-            }
+            if (m_dirs != null) m_folder = null;
 
             return m_files;
         }
@@ -64,26 +59,17 @@ namespace deduper.win8store
             if (m_dirs == null)
             {
                 m_dirs = new List<IDirectory>();
-                foreach (StorageFolder dir in await m_folder.GetFoldersAsync())
-                {
-                    m_dirs.Add(new Directory(dir, m_root));
-                }
+                foreach (StorageFolder dir in await m_folder.GetFoldersAsync()) m_dirs.Add(new Directory(dir, m_root));
             }
 
             //we want to clear out the StorageFolder so that it can be 
             //garbage collected after both the files and directories
             //have been retrieved
-            if (m_files != null)
-            {
-                m_folder = null;
-            }
+            if (m_files != null) m_folder = null;
 
             return m_dirs;
         }
 
-        public string Path
-        {
-            get { return m_folder.Path; }
-        }
+        public string Path => m_folder.Path;
     }
 }

@@ -5,8 +5,7 @@
         Loaded="OnLoaded"
         xmlns:er="clr-namespace:deduper.wpf"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        xmlns:core="clr-namespace:deduper.core;assembly=core"
-        >
+        xmlns:core="clr-namespace:deduper.core;assembly=core">
 
     <Window.DataContext>
         <er:DuplicateViewModel />
@@ -144,9 +143,8 @@
             </DockPanel>
 
             <Label Content="{Binding CurrentAction}"
-                   Visibility="{Binding Running, Converter={StaticResource BoolToVis}}"
-                   >
-                
+                   Visibility="{Binding Running, Converter={StaticResource BoolToVis}}">
+
                 <Label.Style>
                     <Style TargetType="{x:Type Label}">
                         <Style.Resources>

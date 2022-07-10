@@ -9,14 +9,25 @@ namespace deduper.console
 {
     public class File : IFile
     {
-        private readonly string m_path;
         private readonly long m_size;
         private string m_hash;
 
         public File(string path)
         {
-            m_path = path;
-            m_size = (new FileInfo(Path)).Length;
+            Path = path;
+            m_size = new FileInfo(Path).Length;
+        }
+
+        public bool IsHashed()
+        {
+            return m_hash != null;
+        }
+
+        public string Path { get; }
+
+        public long GetSize()
+        {
+            return m_size;
         }
 
         //fake async to keep to interface
@@ -28,30 +39,16 @@ namespace deduper.console
             {
                 NotifyHashBegin(dispatcher, notifier);
 
-                MD5 md5 = MD5.Create();
-                using (FileStream stream = System.IO.File.OpenRead(Path))
+                var md5 = MD5.Create();
+                using (var stream = System.IO.File.OpenRead(Path))
                 {
                     m_hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
                 }
 
                 NotifyHashEnd(dispatcher, notifier);
             }
+
             return m_hash;
-        }
-
-        public bool IsHashed()
-        {
-            return m_hash != null;
-        }
-
-        public string Path
-        {
-            get { return m_path; }
-        }
-
-        public long GetSize()
-        {
-            return m_size;
         }
 
         //fake async to keep to interface
@@ -75,13 +72,9 @@ namespace deduper.console
             {
                 Action action = () => notifier(Path, 100);
                 if (dispatcher != null)
-                {
                     dispatcher.Execute(action);
-                }
                 else
-                {
                     action();
-                }
             }
         }
 
@@ -91,13 +84,9 @@ namespace deduper.console
             {
                 Action action = () => notifier(Path, 0);
                 if (dispatcher != null)
-                {
                     dispatcher.Execute(action);
-                }
                 else
-                {
                     action();
-                }
             }
         }
     }

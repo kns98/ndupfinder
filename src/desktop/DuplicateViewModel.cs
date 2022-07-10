@@ -17,17 +17,12 @@ namespace deduper.wpf
                     new Directory(@"C:\Users\Kevin\OneDrive\duptest"));
                 dff.FindDuplicates();
 
-                FileMapByString fm = dff._duplicates;
+                var fm = dff._duplicates;
 
                 foreach (var item in fm)
-                {
-                    foreach (IFile file in item.Value)
-                    {
-                        dff_OnDuplicateFound(item.Key, file.Path, file.GetSize());
-                    }
-                }
+                foreach (IFile file in item.Value)
+                    dff_OnDuplicateFound(item.Key, file.Path, file.GetSize());
             }
-            
         }
     }
 }

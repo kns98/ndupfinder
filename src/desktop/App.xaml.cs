@@ -1,9 +1,4 @@
-using System;
-using System.ComponentModel;
 using System.Windows;
-using System.Windows.Data;
-using deduper.console;
-using deduper.core;
 
 namespace deduper.wpf
 {

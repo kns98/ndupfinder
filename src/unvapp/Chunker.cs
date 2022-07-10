@@ -4,7 +4,7 @@ namespace deduper.win8store
 {
     internal class Chunker
     {
-        public static readonly uint chunk_size = 1000*1000;
+        public static readonly uint chunk_size = 1000 * 1000;
         //private static readonly uint chunk_size = 5;
 
         private readonly long size;
@@ -30,9 +30,7 @@ namespace deduper.win8store
             }
 
             if (size_left != 0) // will be zero is file size is an exact multiple of chunk size
-            {
-                yield return new Chunk(start, (uint) size_left);
-            }
+                yield return new Chunk(start, (uint)size_left);
         }
     }
 }

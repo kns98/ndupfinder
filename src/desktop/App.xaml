@@ -1,7 +1,5 @@
 ﻿<Application x:Class="deduper.wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:er="clr-namespace:deduper.wpf"
-             xmlns:core="clr-namespace:deduper.core;assembly=core"
              Startup="OnApplicationStartup">
 </Application>
