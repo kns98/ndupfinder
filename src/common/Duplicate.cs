@@ -9,8 +9,8 @@
             FileSize = size;
         }
 
-        public string FileName { get; private set; }
-        public long FileSize { get; private set; }
-        public string Path { get; private set; }
+        public string FileName { get; }
+        public long FileSize { get; }
+        public string Path { get; }
     }
 }

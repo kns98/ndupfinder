@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using deduper.core;
 
@@ -46,20 +45,20 @@ namespace deduper.win8store
 
         public async Task Delete()
         {
-            StorageFile file = await GetFromRoot(Path, m_root);
+            var file = await GetFromRoot(Path, m_root);
             await file.DeleteAsync();
         }
 
         public async Task Write(StringBuilder b)
         {
-            StorageFile file = await GetFromRoot(Path, m_root);
+            var file = await GetFromRoot(Path, m_root);
 
-            IRandomAccessStream s = await file.OpenAsync(FileAccessMode.ReadWrite);
+            var s = await file.OpenAsync(FileAccessMode.ReadWrite);
             var s1 = s.GetOutputStreamAt(0);
             var d = new DataWriter(s1);
             d.WriteString(b.ToString());
             await d.StoreAsync();
-            bool success = await s.FlushAsync();
+            var success = await s.FlushAsync();
             if (!success) throw new Exception("FlushAsync failed!");
         }
 
@@ -82,31 +81,31 @@ namespace deduper.win8store
             //is there any way to gracefully handle this?
             //return a null storage object?
 
-            string rootDirPath = mRoot.Path;
-            string fileFullPath = mPath;
-            string s = fileFullPath.Substring(0, rootDirPath.Length);
+            var rootDirPath = mRoot.Path;
+            var fileFullPath = mPath;
+            var s = fileFullPath.Substring(0, rootDirPath.Length);
 
             if (s == rootDirPath)
             {
-                string fileSubPath = fileFullPath.Substring(rootDirPath.Length);
+                var fileSubPath = fileFullPath.Substring(rootDirPath.Length);
 
-                string fileName = System.IO.Path.GetFileName(fileSubPath);
-                string dirSubPath = System.IO.Path.GetDirectoryName(fileSubPath);
+                var fileName = System.IO.Path.GetFileName(fileSubPath);
+                var dirSubPath = System.IO.Path.GetDirectoryName(fileSubPath);
 
                 var cur = mRoot;
 
                 if (dirSubPath.Length > 1) //assumes the separator is a single character - should improve this
                 {
-                    string sep = fileSubPath.Substring(dirSubPath.Length, 1);
-                    char[] separator = sep.ToCharArray();
-                    string[] dirs = dirSubPath.Split(separator);
+                    var sep = fileSubPath.Substring(dirSubPath.Length, 1);
+                    var separator = sep.ToCharArray();
+                    var dirs = dirSubPath.Split(separator);
 
-                    foreach (string dir in dirs)
+                    foreach (var dir in dirs)
                         if (dir != "")
                             cur = await cur.GetFolderAsync(dir);
                 }
 
-                StorageFile file = await cur.GetFileAsync(fileName);
+                var file = await cur.GetFileAsync(fileName);
                 return file;
             }
 
@@ -115,7 +114,7 @@ namespace deduper.win8store
 
         private async Task CalculateFileSize(StorageFile file)
         {
-            BasicProperties p = await file.GetBasicPropertiesAsync();
+            var p = await file.GetBasicPropertiesAsync();
             m_size = (long)p.Size;
         }
 
@@ -133,18 +132,18 @@ namespace deduper.win8store
             }
 
             //TODO - exception handling
-            StorageFile file = await GetFromRoot(Path, m_root);
-            int num_chunks = (int)(GetSize() / Chunker.chunk_size) + 1;
-            int hash_size = num_chunks * 32;
+            var file = await GetFromRoot(Path, m_root);
+            var num_chunks = (int)(GetSize() / Chunker.chunk_size) + 1;
+            var hash_size = num_chunks * 32;
             float current_chunk = 0;
             var hash_builder = new StringBuilder(hash_size);
             m_hash = "";
 
             var chunker = new Chunker(GetSize());
 
-            foreach (Chunk chunk in chunker.GetChunks())
+            foreach (var chunk in chunker.GetChunks())
             {
-                using (IRandomAccessStream inputStream = await file.OpenAsync(FileAccessMode.Read))
+                using (var inputStream = await file.OpenAsync(FileAccessMode.Read))
                 {
                     using (var dataReader = new DataReader(inputStream.GetInputStreamAt(chunk.Start)))
                     {
@@ -160,7 +159,7 @@ namespace deduper.win8store
 
                 if (notifier != null)
                 {
-                    float percent_done = current_chunk / num_chunks;
+                    var percent_done = current_chunk / num_chunks;
                     Action action = () => notifier(Path, percent_done * 100);
                     if (d == null)
                         action();

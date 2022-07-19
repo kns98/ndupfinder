@@ -49,13 +49,13 @@ namespace deduper.core
             //if we wanted to implement a size or type filter
             //we could do it here
 
-            IEnumerable<KeyValuePair<long, List<IFile>>> potentialdups = this.Where(
+            var potentialdups = this.Where(
                 l => l.Value.Count > 1 // two files having the same file size are potentially duplicates
                      && l.Key != 0 // ignore zero byte (empty) files 
             );
 
             foreach (var potentialdupgroup in potentialdups)
-            foreach (IFile file in potentialdupgroup.Value)
+            foreach (var file in potentialdupgroup.Value)
                 yield return file;
         }
 
@@ -63,11 +63,11 @@ namespace deduper.core
         {
             try
             {
-                foreach (IFile file in await dir.GetFiles())
+                foreach (var file in await dir.GetFiles())
                     try
                     {
                         List<IFile> files;
-                        long size = file.GetSize();
+                        var size = file.GetSize();
 
 
                         if (!TryGetValue(size, out files))
@@ -86,7 +86,7 @@ namespace deduper.core
                         NotifyFileReadError(file.Path, exception);
                     }
 
-                foreach (IDirectory directory in await dir.GetSubDirectories()) await Populate(directory);
+                foreach (var directory in await dir.GetSubDirectories()) await Populate(directory);
             }
             catch (Exception exception)
             {
@@ -96,7 +96,7 @@ namespace deduper.core
 
         private void NotifyFileScanned(IFile file)
         {
-            EventHandler onFileScanned = OnFileScanned;
+            var onFileScanned = OnFileScanned;
             Action action = () => onFileScanned(file, new EventArgs());
 
             if (onFileScanned != null)

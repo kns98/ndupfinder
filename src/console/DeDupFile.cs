@@ -7,12 +7,12 @@ using deduper.core;
 
 namespace deduper.console
 {
-    public class File : IFile
+    public class DeDupFile : IFile
     {
         private readonly long m_size;
         private string m_hash;
 
-        public File(string path)
+        public DeDupFile(string path)
         {
             Path = path;
             m_size = new FileInfo(Path).Length;
@@ -40,7 +40,7 @@ namespace deduper.console
                 NotifyHashBegin(dispatcher, notifier);
 
                 var md5 = MD5.Create();
-                using (var stream = System.IO.File.OpenRead(Path))
+                using (var stream = File.OpenRead(Path))
                 {
                     m_hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
                 }
@@ -54,7 +54,7 @@ namespace deduper.console
         //fake async to keep to interface
         public async Task Delete()
         {
-            System.IO.File.Delete(Path);
+            File.Delete(Path);
         }
 
         //fake async to keep to interface

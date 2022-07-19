@@ -99,7 +99,7 @@
     <Compile Include="BitMapCreator.cs" />
     <Compile Include="Chunk.cs" />
     <Compile Include="Chunker.cs" />
-    <Compile Include="Directory.cs" />
+    <Compile Include="DeDupDir.cs" />
     <Compile Include="DockPanel.cs" />
     <Compile Include="DuplicateViewModel.cs" />
     <Compile Include="File.cs" />

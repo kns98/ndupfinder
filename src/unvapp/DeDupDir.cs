@@ -6,7 +6,7 @@ using deduper.core;
 
 namespace deduper.win8store
 {
-    internal class Directory : IDirectory
+    internal class DeDupDir : IDirectory
     {
         private readonly StorageFolder m_root;
 
@@ -16,7 +16,7 @@ namespace deduper.win8store
 
         private string m_path;
 
-        public Directory(StorageFolder folder, StorageFolder root)
+        public DeDupDir(StorageFolder folder, StorageFolder root)
         {
             m_folder = folder;
             m_root = root;
@@ -24,7 +24,7 @@ namespace deduper.win8store
             m_path = folder.Path;
         }
 
-        public Directory(StorageFolder folder)
+        public DeDupDir(StorageFolder folder)
         {
             m_folder = folder;
             m_root = folder;
@@ -36,7 +36,7 @@ namespace deduper.win8store
             if (m_files == null)
             {
                 m_files = new List<IFile>();
-                foreach (StorageFile file in await m_folder.GetFilesAsync())
+                foreach (var file in await m_folder.GetFilesAsync())
                     //don't ping the network
                     //make the configurable later
                     if (!file.Attributes.HasFlag(FileAttributes.LocallyIncomplete))
@@ -59,7 +59,7 @@ namespace deduper.win8store
             if (m_dirs == null)
             {
                 m_dirs = new List<IDirectory>();
-                foreach (StorageFolder dir in await m_folder.GetFoldersAsync()) m_dirs.Add(new Directory(dir, m_root));
+                foreach (var dir in await m_folder.GetFoldersAsync()) m_dirs.Add(new DeDupDir(dir, m_root));
             }
 
             //we want to clear out the StorageFolder so that it can be 

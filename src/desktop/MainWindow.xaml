@@ -1,7 +1,7 @@
 ﻿<Window x:Class="deduper.wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Duplicate File Finder"
+        Title="Duplicate DeDupFile Finder"
         Loaded="OnLoaded"
         xmlns:er="clr-namespace:deduper.wpf"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"

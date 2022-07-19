@@ -27,7 +27,7 @@ namespace deduper.console
                 if (!i.Attributes.HasFlag(FileAttributes.SparseFile))
                     //don't attempt to get files that are on the skydrive but not downloaded
                 {
-                    var f = new File(file);
+                    var f = new DeDupFile(file);
                     l.Add(f);
                 }
             }

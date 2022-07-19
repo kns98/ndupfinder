@@ -81,6 +81,7 @@ namespace deduper.console
             await dff.FindDuplicates();
 
             LogDups();
+            removeEmptyDirs(sourcepath);
         }
 
         private static void dff_OnHashProgress(string filepath, float percent_done)
@@ -91,6 +92,20 @@ namespace deduper.console
                 Console.WriteLine("Completed Hash for:" + filepath);
         }
 
+        private static void removeEmptyDirs(string startLocation)
+        {
+            foreach (var directory in System.IO.Directory.GetDirectories(startLocation))
+            {
+                removeEmptyDirs(directory);
+                if (System.IO.Directory.GetFiles(directory).Length == 0 &&
+                    System.IO.Directory.GetDirectories(directory).Length == 0)
+                {
+                    Console.WriteLine("Deleting empty dir :" + directory);
+                    System.IO.Directory.Delete(directory, false);
+                }
+            }
+        }
+
         private static void dff_OnDuplicateFound(string hashcode, string filepath, long size)
         {
             Console.WriteLine("Found Dup:" + filepath);
@@ -98,7 +113,7 @@ namespace deduper.console
             if (!filepath.StartsWith("0-"))
             {
                 Console.WriteLine("Deleing " + filepath);
-                System.IO.File.Delete(filepath.Substring(2));
+                File.Delete(filepath.Substring(2));
             }
 
             Dups.Add(new KeyValuePair<long, string>(size, hashcode + " : " + filepath));

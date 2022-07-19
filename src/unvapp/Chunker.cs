@@ -16,9 +16,9 @@ namespace deduper.win8store
 
         public IEnumerable<Chunk> GetChunks()
         {
-            long size_left = size;
+            var size_left = size;
             ulong start = 0;
-            int index = 0;
+            var index = 0;
 
             while (size_left > chunk_size)
             {

@@ -34,7 +34,7 @@ namespace deduper.core
             {
                 if (!_triedToSetThumb)
                 {
-                    string ext = Path.GetExtension(path).ToUpper();
+                    var ext = Path.GetExtension(path).ToUpper();
 
                     if (
                         ext == ".JPG" ||

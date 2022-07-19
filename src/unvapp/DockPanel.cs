@@ -71,13 +71,13 @@ namespace deduper.win8store
             Justification = "Compat with WPF.")]
         protected override Size MeasureOverride(Size constraint)
         {
-            double usedWidth = 0.0;
-            double usedHeight = 0.0;
-            double maximumWidth = 0.0;
-            double maximumHeight = 0.0;
+            var usedWidth = 0.0;
+            var usedHeight = 0.0;
+            var maximumWidth = 0.0;
+            var maximumHeight = 0.0;
 
             // Measure each of the Children
-            foreach (UIElement element in Children)
+            foreach (var element in Children)
             {
                 // Get the child's desired size
                 var remainingSize = new Size(
@@ -126,16 +126,16 @@ namespace deduper.win8store
             Justification = "Compat with WPF.")]
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            double left = 0.0;
-            double top = 0.0;
-            double right = 0.0;
-            double bottom = 0.0;
+            var left = 0.0;
+            var top = 0.0;
+            var right = 0.0;
+            var bottom = 0.0;
 
             // Arrange each of the Children
             var children = Children;
-            int dockedCount = children.Count - (LastChildFill ? 1 : 0);
-            int index = 0;
-            foreach (UIElement element in children)
+            var dockedCount = children.Count - (LastChildFill ? 1 : 0);
+            var index = 0;
+            foreach (var element in children)
             {
                 // Determine the remaining space left to arrange the element
                 var remainingRect = new Rect(
@@ -305,7 +305,7 @@ namespace deduper.win8store
                 _ignorePropertyChange = true;
                 element.SetValue(DockProperty, (Dock)e.OldValue);
 
-                string message = string.Format(
+                var message = string.Format(
                     CultureInfo.InvariantCulture,
                     "InvalidValue",
                     value);

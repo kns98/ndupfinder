@@ -23,8 +23,8 @@ namespace deduper.win8store
         {
             if (DesignMode.DesignModeEnabled) return new BitmapImage(new Uri("ms-appx:///Assets/DesignTime.png"));
 
-            StorageFile f = await File.GetFromRoot(path, _root);
-            StorageItemThumbnail t = await f.GetScaledImageAsThumbnailAsync(ThumbnailMode.SingleItem, _size);
+            var f = await File.GetFromRoot(path, _root);
+            var t = await f.GetScaledImageAsThumbnailAsync(ThumbnailMode.SingleItem, _size);
             var image = new BitmapImage();
             await image.SetSourceAsync(t);
             return image;

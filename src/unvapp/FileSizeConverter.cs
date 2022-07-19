@@ -8,7 +8,7 @@ namespace deduper.win8store
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var size = (long)value;
-            string sizedisplay = size + " Bytes";
+            var sizedisplay = size + " Bytes";
 
             if (size > 1000) sizedisplay = string.Format("{0:0.#}", size / 1000d) + " KB";
 

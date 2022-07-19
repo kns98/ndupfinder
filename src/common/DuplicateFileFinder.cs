@@ -18,7 +18,7 @@ namespace deduper.core
 
         public async Task FindDuplicates()
         {
-            FileMapBySize fileMapBySize = await FileMapBySize.GetNew(
+            var fileMapBySize = await FileMapBySize.GetNew(
                 dispatcher,
                 _rootDirectory,
                 OnFileReadError,
@@ -31,10 +31,10 @@ namespace deduper.core
         {
             var fileMapByHashCode = new FileMapByString();
 
-            foreach (IFile file in fileMapBySize.GetPotentialDuplicates())
+            foreach (var file in fileMapBySize.GetPotentialDuplicates())
                 try
                 {
-                    string hash = await file.GetUniqueHash(dispatcher, OnHashProgress);
+                    var hash = await file.GetUniqueHash(dispatcher, OnHashProgress);
 
                     List<IFile> list;
                     if (!fileMapByHashCode.TryGetValue(hash, out list))
@@ -64,12 +64,12 @@ namespace deduper.core
         {
             foreach (var fii in _duplicates)
             {
-                int counter = 1;
-                foreach (IFile fi in fii.Value)
+                var counter = 1;
+                foreach (var fi in fii.Value)
                 {
                     if (counter > 1)
                     {
-                        EventHandler onPlannedDelete = OnPlannedDelete;
+                        var onPlannedDelete = OnPlannedDelete;
                         if (onPlannedDelete != null) onPlannedDelete(this, new EventArgs());
                     }
 
@@ -118,7 +118,7 @@ namespace deduper.core
                 // individial event, we need to fire two events
                 // when the first duplicate is detected
                 if (filelist.Count == 2)
-                    foreach (IFile ff in filelist)
+                    foreach (var ff in filelist)
                     {
                         Action action = () =>
                             onDuplicateFound(hash, filelist.IndexOf(ff) + "-" + ff.Path, ff.GetSize());

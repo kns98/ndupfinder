@@ -4,8 +4,8 @@ namespace deduper.win8store
     {
         public Chunk(ulong start, uint length)
         {
-            this.Start = start;
-            this.Length = length;
+            Start = start;
+            Length = length;
         }
 
         public ulong Start { get; }
