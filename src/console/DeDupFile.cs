@@ -39,10 +39,12 @@ namespace deduper.console
             {
                 NotifyHashBegin(dispatcher, notifier);
 
-                var md5 = MD5.Create();
-                using (var stream = File.OpenRead(Path))
+                using (var md5 = MD5.Create())
                 {
-                    m_hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                    using (var stream = File.OpenRead(Path))
+                    {
+                        m_hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                    }
                 }
 
                 NotifyHashEnd(dispatcher, notifier);
