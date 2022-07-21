@@ -64,6 +64,24 @@ namespace deduper.console
             Console.Read();
         }
 
+
+        private static void removeEmptyFiles(DirectoryInfo dir)
+        {
+            IEnumerable<FileInfo> fileList = dir.GetFiles("*.*", SearchOption.AllDirectories);
+
+            IEnumerable<FileInfo> fileQuery =
+                from file in fileList
+                where file.Length == 0
+                orderby file.Name
+                select file;
+
+            foreach (FileInfo file in fileQuery)
+            {
+                Console.WriteLine("Deleting Zero Byte File : " + file.FullName);
+                file.Delete();
+            }
+        }
+
         private static async Task FindDups(string sourcepath)
         {
             var dff = new DuplicateFileFinder(
@@ -82,6 +100,7 @@ namespace deduper.console
 
             LogDups();
             removeEmptyDirs(sourcepath);
+            removeEmptyFiles( new DirectoryInfo(sourcepath)  );
         }
 
         private static void dff_OnHashProgress(string filepath, float percent_done)
