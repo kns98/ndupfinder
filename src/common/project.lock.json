@@ -18552,23 +18552,23 @@
     ".NETPlatform,Version=v5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kevin\\.nuget\\packages\\": {},
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\kevin\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\core.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\core.csproj",
       "projectName": "core",
-      "projectPath": "C:\\Users\\kevin\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\core.csproj",
-      "projectJsonPath": "C:\\Users\\kevin\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\project.json",
-      "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kevin\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\obj\\",
+      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\core.csproj",
+      "projectJsonPath": "C:\\Users\\Administrator\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\project.json",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\kns98\\ndupfinder\\src\\common\\obj\\",
       "projectStyle": "ProjectJson",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
