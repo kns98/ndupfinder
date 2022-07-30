@@ -1,0 +1,2 @@
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\core.csproj;neutral
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\unvapp\unvapp.csproj;x86

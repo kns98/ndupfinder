@@ -1,0 +1,14 @@
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\deduper.exe.config
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\deduper.exe
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\deduper.pdb
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\core.dll
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\core.pdb
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\bin\Debug\core.dll.config
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\console.csproj.AssemblyReference.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\console.csproj.SuggestedBindingRedirects.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\deduper.Properties.Resources.resources
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\console.csproj.GenerateResource.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\console.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\console.csproj.CopyComplete
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\deduper.exe
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\console\obj\x86\Debug\deduper.pdb

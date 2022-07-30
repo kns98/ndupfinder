@@ -1,0 +1,7 @@
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\bin\Debug\core.dll.config
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\bin\Debug\core.dll
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\bin\Debug\core.pdb
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\obj\Debug\core.csproj.AssemblyReference.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\obj\Debug\core.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\obj\Debug\core.dll
+C:\Users\Administrator\Source\Repos\kns98\ndupfinder\src\common\obj\Debug\core.pdb
