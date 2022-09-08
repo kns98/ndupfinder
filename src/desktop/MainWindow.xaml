@@ -21,7 +21,7 @@
         </CollectionViewSource>
 
         <!-- Duplicate Template -->
-        <DataTemplate DataType="{x:Type core:Duplicate}">
+        <DataTemplate DataType="{x:Type Duplicate}">
             <Label FlowDirection="RightToLeft" Content="{Binding Path}" />
         </DataTemplate>
 
@@ -29,7 +29,7 @@
         <er:FileSizeConverter x:Key="FileSizeConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
-        <DataTemplate DataType="{x:Type core:DuplicateGroup}">
+        <DataTemplate DataType="{x:Type DuplicateGroup}">
             <Grid VerticalAlignment="Center"
                   HorizontalAlignment="Stretch" Margin="6">
                 <!-- Drop Shadow -->

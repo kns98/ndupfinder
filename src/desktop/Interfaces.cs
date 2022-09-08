@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace deduper.console
+namespace deduper.wpf
 {
     public delegate void HashProgress(string filepath, float percent_done);
 

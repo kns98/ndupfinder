@@ -1,7 +1,6 @@
 using System.ComponentModel;
 using System.Windows;
-using deduper.console;
-using deduper.core;
+
 
 namespace deduper.wpf
 {

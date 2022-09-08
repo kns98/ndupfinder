@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 
-namespace deduper.console
+namespace deduper.wpf
 {
     public class Directory : IDirectory
     {

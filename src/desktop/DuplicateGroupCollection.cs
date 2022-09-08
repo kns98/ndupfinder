@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace deduper.console
+namespace deduper.wpf
 {
     public class DuplicateGroupCollection :
         ObservableCollection<DuplicateGroup>

@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 
-namespace deduper.console
+namespace deduper.wpf
 {
     public class DuplicateGroup : ObservableCollection<Duplicate>
     {

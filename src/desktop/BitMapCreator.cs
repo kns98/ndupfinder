@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-using deduper.core;
+
 
 namespace deduper.wpf
 {

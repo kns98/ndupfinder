@@ -1,4 +1,4 @@
-﻿namespace deduper.console
+﻿namespace deduper.wpf
 {
     public class Duplicate
     {

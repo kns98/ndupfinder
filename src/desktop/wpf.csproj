@@ -65,8 +65,15 @@
     </Compile>
     <Compile Include="BitMapCreator.cs" />
     <Compile Include="BlinkingEasingFunction.cs" />
+    <Compile Include="Directory.cs" />
+    <Compile Include="Duplicate.cs" />
+    <Compile Include="DuplicateFileFinder.cs" />
+    <Compile Include="DuplicateGroup.cs" />
+    <Compile Include="DuplicateGroupCollection.cs" />
     <Compile Include="DuplicateViewModel.cs" />
+    <Compile Include="FileMap.cs" />
     <Compile Include="FileSizeConverter.cs" />
+    <Compile Include="Interfaces.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -99,12 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\common\core.csproj">
-      <Project>{b2be848c-497a-459e-a794-fe3b95bfd4c8}</Project>
-      <Name>core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
