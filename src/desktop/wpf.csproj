@@ -105,10 +105,6 @@
       <Project>{b2be848c-497a-459e-a794-fe3b95bfd4c8}</Project>
       <Name>core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\console\console.csproj">
-      <Project>{70f05154-9825-4ee1-aa9c-5fdcc81fdecc}</Project>
-      <Name>console</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
